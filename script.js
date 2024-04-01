@@ -1,10 +1,13 @@
 const startButton = document.querySelector('button');
 const puzzleContainer = document.querySelector('.container');
+const changeImageButton = document.querySelector('#changeImage');
 
 let previouslySelectedElement = null;
+let imageSet = 1;
+let imageIndexArray;
 
 startButton.addEventListener('click', function () {
-    const imageSet = Math.ceil((Math.random() * 3)); 
+    imageSet = Math.ceil((Math.random() * 3)); 
     console.log(imageSet);
 
     const gameScreen = document.querySelector('.game-screen');
@@ -21,7 +24,7 @@ startButton.addEventListener('click', function () {
     while (uniqueNumbers.size < 9) {
         uniqueNumbers.add(Math.ceil(Math.random() * 9))    
     }
-    const imageIndexArray = [...uniqueNumbers];
+    imageIndexArray = [...uniqueNumbers];
 
     for (let i = 0; i < 9;i++) {
         console.log(i);
@@ -56,9 +59,20 @@ startButton.addEventListener('click', function () {
                 }
             }
         });
+
         puzzleContainer.appendChild(div);
     }
 });
+
+changeImageButton.addEventListener('click', function () {
+    imageSet = Math.ceil((Math.random() * 3)); 
+    originalImage.setAttribute('src', `./data/image${imageSet}/originalImage.png`);
+
+    const puzzleImages = document.querySelectorAll('.container img');
+    puzzleImages.forEach((img,index) => {
+        img.setAttribute('src', `./data/image${imageSet}/image${imageIndexArray[index]}.jpg`);
+    })
+})
 
 
 
