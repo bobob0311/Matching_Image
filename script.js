@@ -1,5 +1,6 @@
 const startButton = document.querySelector('button');
 const puzzleContainer = document.querySelector('.container');
+
 let previouslySelectedElement = null;
 
 startButton.addEventListener('click', function () {
@@ -41,17 +42,23 @@ startButton.addEventListener('click', function () {
                     previouslySelectedElement.style.opacity = 1;
                     previouslySelectedElement = null;
                 } else {
+                    const parent1 = previouslySelectedElement.parentNode;
+                    const parent2 = currentElement.parentNode;
+                    
+                    parent1.removeChild(previouslySelectedElement);
+                    parent2.removeChild(currentElement);
+
+                    parent1.appendChild(currentElement);
+                    parent2.appendChild(previouslySelectedElement);
+
                     previouslySelectedElement.style.opacity = 1;
-                    previouslySelectedElement = currentElement;
-                    previouslySelectedElement.style.opacity = 0.3;
+                    previouslySelectedElement = null;
                 }
             }
         });
-
         puzzleContainer.appendChild(div);
     }
 });
-
 
 
 
