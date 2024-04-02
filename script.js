@@ -2,76 +2,102 @@ const startButton = document.querySelector('button');
 const puzzleContainer = document.querySelector('.container');
 const changeImageButton = document.querySelector('#changeImage');
 
-let previouslySelectedElement = null;
-let imageSet = 1;
-let imageIndexArray;
 
+const gameData = {
+    previouslySelectedElement : null,
+    imageSet : 1,
+    imageIndexArray: [],
+    
+    changeOriginalImageset: function () {
+        this.imageSet = Math.ceil((Math.random() * 3)); 
+
+        const originalImage = document.getElementById('originalImage');
+        originalImage.setAttribute('src', `./data/image${this.imageSet}/originalImage.png`);
+    },
+
+    generateImageIndexes: function () {
+        const uniqueNumbers = new Set();
+
+        while (uniqueNumbers.size < 9) {
+            uniqueNumbers.add(Math.ceil(Math.random() * 9))    
+        }
+        this.imageIndexArray = [...uniqueNumbers];
+    },
+
+    updatePreviouslySelectedElement: function (newElement) {
+        this.previouslySelectedElement = newElement;
+    }
+}
+
+
+function loadPuzzleImages(imageSet, imageIndexArray) {
+    const puzzleImages = document.querySelectorAll('.container img');
+    puzzleImages.forEach((img,index) => {
+        img.setAttribute('src', `./data/image${imageSet}/image${imageIndexArray[index]}.jpg`);
+    })
+}
+
+function createImageContainer(imageSet, imageIndex) {    
+    const div = document.createElement('div');
+    div.classList.add('image-container');
+
+    const img = document.createElement('img');
+    img.setAttribute('src', `./data/image${imageSet}/image${imageIndex}.jpg`);
+    div.appendChild(img);
+
+    return div;
+}
+
+function swapElements(element1, element2) {
+    const parent1 = element1.parentNode;
+    const parent2 = element2.parentNode;
+                    
+    parent1.removeChild(element1);
+    parent2.removeChild(element2);
+
+    parent1.appendChild(element2);
+    parent2.appendChild(element1);
+
+}
+
+function handleClick(event) {
+    const currentElement = event.target;
+    if (!gameData.previouslySelectedElement) {
+        gameData.updatePreviouslySelectedElement(currentElement);
+        gameData.previouslySelectedElement.style.opacity = 0.3;
+    } else if (gameData.previouslySelectedElement === currentElement) {
+        gameData.previouslySelectedElement.style.opacity = 1;
+        gameData.updatePreviouslySelectedElement(null);
+                   
+    } else {
+        swapElements(gameData.previouslySelectedElement, currentElement);
+
+        gameData.previouslySelectedElement.style.opacity = 1;
+        gameData.updatePreviouslySelectedElement(null);
+    }   
+}
 startButton.addEventListener('click', function () {
-    imageSet = Math.ceil((Math.random() * 3)); 
-    console.log(imageSet);
-
     const gameScreen = document.querySelector('.game-screen');
     gameScreen.classList.remove('hide');
 
     const startScreen = document.querySelector('.start-screen');
     startScreen.classList.add('hide');
 
-    const originalImage =document.getElementById('originalImage');
-    originalImage.setAttribute('src', `./data/image${imageSet}/originalImage.png`);
+    gameData.changeOriginalImageset();
+    gameData.generateImageIndexes();
 
-    const uniqueNumbers = new Set();
+    for (let i = 0; i < 9; i++) {
+        const div = createImageContainer(gameData.imageSet, gameData.imageIndexArray[i]);
 
-    while (uniqueNumbers.size < 9) {
-        uniqueNumbers.add(Math.ceil(Math.random() * 9))    
-    }
-    imageIndexArray = [...uniqueNumbers];
 
-    for (let i = 0; i < 9;i++) {
-        console.log(i);
-        const div = document.createElement('div');
-        div.classList.add('image-container');
-
-        const img = document.createElement('img');
-        img.setAttribute('src', `./data/image${imageSet}/image${imageIndexArray[i]}.jpg`);
-        div.appendChild(img);
-
-        div.addEventListener('click',  (event) =>  {
-            const currentElement = event.target;
-            if (!previouslySelectedElement) {
-                previouslySelectedElement = currentElement;
-                previouslySelectedElement.style.opacity = 0.3;
-            } else {
-                if (previouslySelectedElement === currentElement) {
-                    previouslySelectedElement.style.opacity = 1;
-                    previouslySelectedElement = null;
-                } else {
-                    const parent1 = previouslySelectedElement.parentNode;
-                    const parent2 = currentElement.parentNode;
-                    
-                    parent1.removeChild(previouslySelectedElement);
-                    parent2.removeChild(currentElement);
-
-                    parent1.appendChild(currentElement);
-                    parent2.appendChild(previouslySelectedElement);
-
-                    previouslySelectedElement.style.opacity = 1;
-                    previouslySelectedElement = null;
-                }
-            }
-        });
-
+        div.addEventListener('click',  handleClick);
         puzzleContainer.appendChild(div);
     }
 });
 
 changeImageButton.addEventListener('click', function () {
-    imageSet = Math.ceil((Math.random() * 3)); 
-    originalImage.setAttribute('src', `./data/image${imageSet}/originalImage.png`);
-
-    const puzzleImages = document.querySelectorAll('.container img');
-    puzzleImages.forEach((img,index) => {
-        img.setAttribute('src', `./data/image${imageSet}/image${imageIndexArray[index]}.jpg`);
-    })
+    gameData.changeOriginalImageset();
+    loadPuzzleImages(gameData.imageSet, gameData.imageIndexArray);
 })
 
 
