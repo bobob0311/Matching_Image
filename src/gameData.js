@@ -3,6 +3,7 @@ const gameData = {
   imageSet: 1,
   imageIndexArray: [],
   count: 0,
+  playTime: null,
 
   changeOriginalImageset: function () {
     this.imageSet = Math.ceil(Math.random() * 3);
@@ -28,9 +29,13 @@ const gameData = {
   },
 
   updateCount: function () {
-    this.count++;
-    console.log(this.count);
+    this.count+=1
   },
+
+  updatePlayTime: function () {
+    this.playTime +=1 
+    console.log(this.playTime);
+  }
 };
 
 export default gameData;

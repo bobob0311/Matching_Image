@@ -5,8 +5,15 @@ import handleClick from "./src/eventHandler.js";
 const startButton = document.querySelector('button');
 const puzzleContainer = document.querySelector('.container');
 const changeImageButton = document.querySelector('#changeImage');
+const timeBox = document.getElementById('time')
 
 startButton.addEventListener('click', function () {
+    gameData.playTime = 0;
+    setInterval(function () {
+        gameData.updatePlayTime()
+        timeBox.innerText = gameData.playTime;
+    }, 1000);
+    
     const gameScreen = document.querySelector('.game-screen');
     gameScreen.classList.remove('hide');
 

@@ -180,13 +180,13 @@ img {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
 }
 
-.time-box{
+.counter-time-box{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-top: 30px;
 }
 
-.time-box span {
+.counter-time-box span {
     font-size: 50px;
     padding: 4px 25px;
     background-color: #ffffff;

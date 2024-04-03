@@ -1,7 +1,7 @@
 import gameData from "./gameData.js";
 import { swapElements } from "./utils.js";
 
-const timeBox = document.getElementById('time');
+const timeBox = document.getElementById('counter');
 
 function handleClick(event) {
     const currentElement = event.target;
