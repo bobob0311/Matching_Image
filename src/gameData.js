@@ -2,6 +2,7 @@ const gameData = {
   previouslySelectedElement: null,
   imageSet: 1,
   imageIndexArray: [],
+  count: 0,
 
   changeOriginalImageset: function () {
     this.imageSet = Math.ceil(Math.random() * 3);
@@ -24,6 +25,11 @@ const gameData = {
 
   updatePreviouslySelectedElement: function (newElement) {
     this.previouslySelectedElement = newElement;
+  },
+
+  updateCount: function () {
+    this.count++;
+    console.log(this.count);
   },
 };
 
