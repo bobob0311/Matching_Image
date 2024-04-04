@@ -1,7 +1,7 @@
 import gameData from "./gameData.js";
 import { swapElements } from "./utils.js";
 
-const timeBox = document.getElementById('counter');
+const countBox = document.getElementById('counter');
 
 function handleClick(event) {
     const currentElement = event.target;
@@ -15,7 +15,7 @@ function handleClick(event) {
     } else {
         swapElements(gameData.previouslySelectedElement, currentElement);
         gameData.updateCount();
-        timeBox.innerText = gameData.count;
+        countBox.innerText = gameData.count;
         gameData.previouslySelectedElement.style.opacity = 1;
         gameData.updatePreviouslySelectedElement(null);
     }   

@@ -27,6 +27,4 @@ function swapElements(element1, element2) {
     parent2.appendChild(element1);
 }
 
-
-
 export {loadPuzzleImages, createImageContainer,swapElements}

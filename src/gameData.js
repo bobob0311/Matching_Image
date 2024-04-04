@@ -29,12 +29,20 @@ const gameData = {
   },
 
   updateCount: function () {
-    this.count+=1
+    this.count += 1;
+  },
+
+  resetCount: function () {
+    this.count = 0;
   },
 
   updatePlayTime: function () {
     this.playTime +=1 
     console.log(this.playTime);
+  },
+
+  resetPlayTime: function () {
+    this.playTime = 0;
   }
 };
 
