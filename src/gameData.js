@@ -4,6 +4,8 @@ const gameData = {
   imageIndexArray: [],
   count: 0,
   playTime: null,
+  currentImageIndexArray: [],
+  clear : false,
 
   changeOriginalImageset: function () {
     this.imageSet = Math.ceil(Math.random() * 3);
@@ -13,6 +15,7 @@ const gameData = {
       "src",
       `./data/image${this.imageSet}/originalImage.png`
     );
+
   },
 
   generateImageIndexes: function () {
@@ -22,6 +25,7 @@ const gameData = {
       uniqueNumbers.add(Math.ceil(Math.random() * 9));
     }
     this.imageIndexArray = [...uniqueNumbers];
+    this.currentImageIndexArray = this.imageIndexArray;
   },
 
   updatePreviouslySelectedElement: function (newElement) {
@@ -38,7 +42,6 @@ const gameData = {
 
   updatePlayTime: function () {
     this.playTime +=1 
-    console.log(this.playTime);
   },
 
   resetPlayTime: function () {

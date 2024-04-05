@@ -26,14 +26,15 @@ body {
   top: 30%;
   left: calc(50% - 300px);
   width: 600px;
-  height: 30%;
+  height: 40%;
   opacity: 1;
   z-index: 100;
   border-radius: 20px;
 }
 
 .modal button {
-  padding: 3% 20%;
+  padding: 20px;
+  margin: 10px;
   appearance: none;
   border: none;
   background-color: #b8e1b8;
@@ -46,12 +47,16 @@ body {
   cursor: pointer;
   background-color: #79b279;
 }
-.fail {
+.content {
   font-size: 50px;
   color: red;
   margin: 8% 0;
 }
 
+.button-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
 
 img {
   max-width: 100%;
