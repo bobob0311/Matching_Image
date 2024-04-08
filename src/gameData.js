@@ -5,7 +5,8 @@ const gameData = {
   count: 0,
   playTime: null,
   currentImageIndexArray: [],
-  clear : false,
+  clear: false,
+  limitTime: 30,
 
   changeOriginalImageset: function () {
     this.imageSet = Math.ceil(Math.random() * 3);
