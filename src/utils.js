@@ -18,7 +18,7 @@ function createInterval(gameData,intervalTime = 1000) {
     }, intervalTime);
 }
 
-function resetGameData(gameData) {
+function resetGameData() {
     gameData.resetCount();
     gameData.resetPlayTime();
     changeTime();

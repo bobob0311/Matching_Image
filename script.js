@@ -10,9 +10,9 @@ const choiceSection = document.querySelector('.choice-screen')
 
 startButton.addEventListener('click', function () {
     if (!document.querySelector('.limit-button-wrapper')) limitPage();
-    resetGameData(gameData);
-
     
+    resetGameData();
+
     choiceSection.classList.remove('hide');
 
     const startScreen = document.querySelector('.start-screen');
