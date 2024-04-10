@@ -9,7 +9,7 @@ const changeImageButton = document.querySelector('#changeImage');
 const choiceSection = document.querySelector('.choice-screen')
 
 startButton.addEventListener('click', function () {
-    limitPage();
+    if (!document.querySelector('.limit-button-wrapper')) limitPage();
     resetGameData(gameData);
 
     
