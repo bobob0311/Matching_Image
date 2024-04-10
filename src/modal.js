@@ -28,13 +28,28 @@ function createModal() {
     })
     
     retryButton.textContent = "다시 시도"
+
+    const homeButton = document.createElement('button');
+    homeButton.textContent = "홈으로"
+    homeButton.addEventListener('click', function () {
+        const gameScreen = document.querySelector('.game-screen');
+        gameScreen.classList.add('hide');
+
+        const startScreen = document.querySelector('.start-screen');
+        startScreen.classList.remove('hide');
+
+        document.body.removeChild(modalSection);
+    })
+
     const buttonWrapper = document.createElement('div');
     buttonWrapper.classList.add('modal-button-wrapper')
-    buttonWrapper.appendChild(retryButton);
     
     contentBox.appendChild(content);
     contentBox.appendChild(buttonWrapper);
     modalSection.appendChild(contentBox);
+    
+    buttonWrapper.appendChild(homeButton);
+    buttonWrapper.appendChild(retryButton);
 
     if (!gameData.clear) {
         content.textContent = "실패";
@@ -50,23 +65,6 @@ function createModal() {
         content.appendChild(count);
         content.appendChild(time);
 
-    
-        const homeButton = document.createElement('button');
-
-        homeButton.textContent = "홈으로"
-
-        homeButton.addEventListener('click', function () {
-            const gameScreen = document.querySelector('.game-screen');
-            gameScreen.classList.add('hide');
-
-            const startScreen = document.querySelector('.start-screen');
-            startScreen.classList.remove('hide');
-
-            document.body.removeChild(modalSection);
-        })
-
-        buttonWrapper.appendChild(homeButton);
-        buttonWrapper.appendChild(retryButton);
     }
 
 
