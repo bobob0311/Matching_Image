@@ -1,5 +1,7 @@
 # README
 
+## [웹사이트 가보기](https://astonishing-valkyrie-79c4a0.netlify.app/)
+
 > 퍼즐 게임 명세서
 
 ## 1. 페이지 구성
