@@ -268,23 +268,25 @@ img {
   padding-top: 1rem;
 }
 
-#changeImage {
+.button-wrapper button{
+  margin: 0 20px;
   background-color: #79b279;
-  color: #fff;
-  padding: 0.8rem 2rem;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-  margin-top: 1rem;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, box-shadow 0.3s;
+    color: #fff;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-top: 1rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-#changeImage:hover {
+.button-wrapper button:hover{
   background-color: #4d924d;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+
 }
 
 .counter-time-box{

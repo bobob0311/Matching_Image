@@ -1,5 +1,5 @@
 
-import { createInterval } from "./utils.js";
+import { createInterval, resetGameData } from "./utils.js";
 import gameData from "./gameData.js";
 
 export default function limitPage() {
@@ -23,6 +23,7 @@ export default function limitPage() {
             choiceSection.classList.add('hide');
             gameScreen.classList.remove('hide');
             gameData.limitTime = item;   
+            resetGameData();
             createInterval();
         })
     limitButtonWrapper.appendChild(limitButton);
