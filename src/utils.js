@@ -3,19 +3,21 @@ import {changeCount, changeTime} from "./change.js"
 import createModal from "./modal.js";
 
 
-function createInterval(gameData,intervalTime = 1000) {
-    var intervalId = setInterval(function () {
-        gameData.updatePlayTime()
-        changeTime();
-
-    if (gameData.playTime === gameData.limitTime) {
-        clearInterval(intervalId);
-        document.body.insertAdjacentElement('afterbegin', createModal());
-    }
+function createInterval() {
+    const intervalId = setInterval(function () {
+        if (!gameData.clear) {
+            gameData.updatePlayTime()
+            changeTime();
+        } 
+        
         if (gameData.clear) {
             clearInterval(intervalId);
-    }
-    }, intervalTime);
+        } else if  (gameData.playTime === gameData.limitTime) {
+            clearInterval(intervalId);
+            document.body.insertAdjacentElement('afterbegin', createModal());
+        } 
+
+    }, 1000);
 }
 
 function resetGameData() {

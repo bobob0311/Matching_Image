@@ -33,6 +33,8 @@ startButton.addEventListener('click', function () {
     }
 });
 
+
+
 changeImageButton.addEventListener('click', function () {
     gameData.changeOriginalImageset();
     loadPuzzleImages(gameData.imageSet, gameData.imageIndexArray);

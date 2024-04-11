@@ -5,7 +5,6 @@ import { loadPuzzleImages } from "./puzzle.js";
 
 
 function createModal() {  
-    console.log('r')
     const modalSection = document.createElement('section');
     modalSection.classList.add('modal');
 
